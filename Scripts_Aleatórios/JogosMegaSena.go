@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	AllNumbs := Numeros_Mega(65000)
+	AllNumbs := Numeros_Mega(650)
 	Grava_Resultado(AllNumbs)
 	//fmt.Println(AllNumbs)
 	//fmt.Println(len(AllNumbs))
@@ -92,8 +92,8 @@ func AleatNumber() (aleatnumber int) {
 }
 
 func Grava_Resultado(result []string) {
-	caminho := "C:/Users/filipe.cardoso/Desktop/EstudosGo/MetodosNuméricos/MegaSorteio/ResultadoMega.txt"
-	arquivo, _ := system.Create(caminho)
+	caminho, _ := system.Getwd()
+	arquivo, _ := system.Create(caminho + "\\NumerosMega.txt")
 	for i := 0; i <= len(result)-1; i++ {
 		if result[i] == "] " {
 			arquivo.WriteString(strings.Join(result[i-2:i+1], "") + "\n")
