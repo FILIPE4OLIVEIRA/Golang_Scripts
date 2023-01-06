@@ -1,23 +1,21 @@
-
 package main
 
-// Cria uma Lista de Números Primos
+// Cria uma Lista de NÃºmeros Primos
 
-// Função Privada Minuscula
-// Função Publica Maiuscula
+// FunÃ§Ã£o Privada Minuscula
+// FunÃ§Ã£o Publica Maiuscula
 
 import (
-	"fmt"
 	system "os"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	lista_primos := Numeros_Primos(92500)
+	lista_primos := Numeros_Primos(900)
 	Grava_Resultado(toString(lista_primos))
 	//fmt.Println(lista_primos)
-	fmt.Println(len(lista_primos))
+	//fmt.Println(len(lista_primos))
 }
 
 func Numeros_Primos(limite int) (lista_primos []int) {
@@ -82,8 +80,8 @@ func toString(lista []int) (lista_string []string) {
 }
 
 func Grava_Resultado(result []string) {
-	caminho := "C:/Users/filipe.cardoso/Desktop/EstudosGo/MetodosNuméricos/NumerosPrimos/NumerosPrimos.txt"
-	arquivo, _ := system.Create(caminho)
+	caminho, _ := system.Getwd()
+	arquivo, _ := system.Create(caminho + "\\NumerosMega.txt")
 	slice := lineBound(len(result))
 	for i := 2; i < len(result)+1; i++ {
 		if i%slice == 0 {
