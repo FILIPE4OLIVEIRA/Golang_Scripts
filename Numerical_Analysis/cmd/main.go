@@ -167,7 +167,7 @@ func main() {
 	_, yVec3, dyVec3 := ODE.RungeKutta4SecondOrder(0, math.Pi, 0, 1, P, Q, R)
 
 	fmt.Printf(
-		"[RK4 2nd order]    y(π) ≈ %.6f (expected 0), y'(π) ≈ %.6f (expected -1)\n",
+		"[RK4 2nd order]    y(π) ≈ %.6f (expected 0.00000), y'(π) ≈ %.6f (expected -1.00000)\n",
 		yVec3[len(yVec3)-1],
 		dyVec3[len(dyVec3)-1],
 	)
