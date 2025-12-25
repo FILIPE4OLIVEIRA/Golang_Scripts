@@ -64,4 +64,13 @@ git add README.md
 git commit -m "Add README"
 git push origin --all
 ```
+
+**Contribuição**
+
+- Faça fork, crie branch com feature/bugfix, abra PR com descrição.
+
+**Licença**
+
+Use a licença que preferir (ex.: MIT). Adicione um arquivo `LICENSE` se quiser publicar.
+
 ---
