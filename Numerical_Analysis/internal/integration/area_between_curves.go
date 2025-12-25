@@ -1,31 +1,23 @@
 package integration
 
-import (
-	"math"
-)
+import "math"
 
-func AreaBetweenCurves(xIncial float64, xFinal float64, NumberBreak int,
-	MathFunction1 func(float64) float64, MathFunction2 func(float64) float64) (Integral float64, erro error) {
+func AreaBetweenCurves(xInicial float64, xFinal float64, NumberBreak int,
+	f func(float64) float64, g func(float64) float64) (float64, error) {
 
-	var IntegrationSum1, IntegrationSum2 float64
-	var ValueIntegralArea1, ValueIntegralArea2 float64
-	var ValueIntegralArea float64
-	var step float64
+	h := (xFinal - xInicial) / float64(NumberBreak)
+	sum := 0.0
 
-	IntegrationSum1 = 0.0
-	IntegrationSum2 = 0.0
-	ValueIntegralArea = 0.0
+	for i := 0; i < NumberBreak; i++ {
+		xLeft := xInicial + float64(i)*h
+		xRight := xLeft + h
 
-	step = (xFinal - xIncial) / float64(NumberBreak)
+		diffLeft := math.Abs(f(xLeft) - g(xLeft))
+		diffRight := math.Abs(f(xRight) - g(xRight))
 
-	for i := 1; i < NumberBreak; i++ {
-		IntegrationSum1 += 2.0 * MathFunction1(xIncial+float64(i)*step)
-		IntegrationSum2 += 2.0 * MathFunction2(xIncial+float64(i)*step)
+		sum += (diffLeft + diffRight) / 2.0
 	}
 
-	ValueIntegralArea1 = (step / 2.0) * (MathFunction1(xIncial) + IntegrationSum1 + MathFunction1(xFinal))
-	ValueIntegralArea2 = (step / 2.0) * (MathFunction2(xIncial) + IntegrationSum2 + MathFunction2(xFinal))
-	ValueIntegralArea = math.Abs(ValueIntegralArea1 - ValueIntegralArea2)
-
-	return ValueIntegralArea, erro
+	area := h * sum
+	return area, nil
 }

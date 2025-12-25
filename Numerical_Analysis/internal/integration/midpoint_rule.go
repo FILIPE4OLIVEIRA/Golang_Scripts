@@ -1,21 +1,16 @@
 package integration
 
-func MidpointRule(xIncial float64, xFinal float64, NumberBreak int,
-	MathFunction func(float64) float64) (Integral float64, erro error) {
+func MidpointRule(xInicial float64, xFinal float64, NumberBreak int,
+	MathFunction func(float64) float64) (float64, error) {
 
-	var IntegrationSum float64
-	var IntegralValue float64
-	var step float64
+	h := (xFinal - xInicial) / float64(NumberBreak)
+	sum := 0.0
 
-	IntegrationSum = 0.0
-
-	step = (xFinal - xIncial) / float64(NumberBreak)
-
-	for i := 1; i < (NumberBreak / 2); i++ {
-		IntegrationSum += 2.0 * MathFunction(xIncial+float64(i+1)*step)
+	for i := 0; i < NumberBreak; i++ {
+		mid := xInicial + (float64(i)+0.5)*h
+		sum += MathFunction(mid)
 	}
 
-	IntegralValue = (2.0 * step) * IntegrationSum
-
-	return IntegralValue, erro
+	integral := h * sum
+	return integral, nil
 }
