@@ -1,4 +1,4 @@
-package diferentialEquation
+package diferentialEquations
 
 func Euler(xIncial, xFinal, yIncial float64,
 	MathFunction func(float64, float64) float64) (xVector, DiferentialPoint []float64, erro error) {

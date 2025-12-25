@@ -1,4 +1,4 @@
-package diferentialEquation
+package diferentialEquations
 
 func RungeKutta4SecondOrder(xInicial, xFinal float64, y0, dy0 float64,
 	P, Q, R func(float64) float64) (xVec, yVec, dyVec []float64) {
