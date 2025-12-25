@@ -1,9 +1,10 @@
 package main
 
 import (
-	"NumericalMethods/Integration"
 	screen "fmt"
 	"math"
+
+	Integration "github.com/Filipe4Oliveira/numerical_analysis/internal/integration"
 )
 
 func MathEquation(x, y, z float64) (point float64) {
@@ -21,7 +22,7 @@ func main() {
 	z0 = 0.4
 	z1 = 0.7
 
-	Integral, erro := Integration.Integral_Tripla(x0, x1, y0, y1, z0, z1, MathEquation)
+	Integral, erro := Integration.TripleIntegral(x0, x1, y0, y1, z0, z1, MathEquation)
 
 	if erro != nil {
 		screen.Printf("Integral_Dupla \n")
