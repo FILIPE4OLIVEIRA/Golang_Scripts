@@ -74,9 +74,3 @@ git push origin --all
 Use a licença que preferir (ex.: MIT). Adicione um arquivo `LICENSE` se quiser publicar.
 
 ---
-
-Se quiser, eu também posso:
-
-- criar um `LICENSE` (MIT),
-- abrir um PR com `README.md` atualizado,
-- ou commitar e dar push diretamente para você (preciso que você confirme).
