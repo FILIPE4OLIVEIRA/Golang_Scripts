@@ -19,14 +19,14 @@ func TripleIntegral(xIncial, xFinal, yIncial, yFinal, zIncial, zFinal float64,
 	MaxInt = 1000
 	AleatNumbers = 100000
 
-	rand.Seed(time.Now().UnixNano())
+	localRand := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	for count < MaxInt {
 		IntegrationSum = 0
 		for i := 0; i < AleatNumbers; i++ {
-			xRandomPoint = xIncial + (xFinal-xIncial)*rand.Float64()
-			yRandomPoint = yIncial + (yFinal-yIncial)*rand.Float64()
-			zRandomPoint = zIncial + (zFinal-zIncial)*rand.Float64()
+			xRandomPoint = xIncial + (xFinal-xIncial)*localRand.Float64()
+			yRandomPoint = yIncial + (yFinal-yIncial)*localRand.Float64()
+			zRandomPoint = zIncial + (zFinal-zIncial)*localRand.Float64()
 			IntegrationSum += MathFunction(xRandomPoint, yRandomPoint, zRandomPoint)
 		}
 
