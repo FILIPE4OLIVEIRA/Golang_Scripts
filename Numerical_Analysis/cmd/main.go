@@ -1,35 +1,41 @@
 package main
 
 import (
-	screen "fmt"
+	"fmt"
 	"math"
 
-	Integration "github.com/Filipe4Oliveira/numerical_analysis/internal/integration"
+	diferentialEquation "github.com/Filipe4Oliveira/numerical_analysis/internal/ode"
 )
 
-func MathEquation(x, y, z float64) (point float64) {
-	result := math.Sin(x * y * z)
-	return result
+// P(x), Q(x), R(x)
+func P(x float64) float64 {
+	return -2
+}
+
+func Q(x float64) float64 {
+	return 2
+}
+
+func R(x float64) float64 {
+	return math.Exp(2*x) * math.Sin(x)
 }
 
 func main() {
-	var x0, x1, y0, y1, z0, z1 float64
 
-	x0 = 0.1
-	x1 = 0.9
-	y0 = 0.2
-	y1 = 0.5
-	z0 = 0.4
-	z1 = 0.7
+	x0 := 0.0
+	x1 := 0.9
 
-	Integral, erro := Integration.TripleIntegral(x0, x1, y0, y1, z0, z1, MathEquation)
+	y0 := -0.4  // y(0)
+	dy0 := -0.6 // y'(0)
 
-	if erro != nil {
-		screen.Printf("Integral_Dupla \n")
-		screen.Printf("Could not Itegrate in This Interview! \n")
-	} else {
-		screen.Printf("Integral_Dupla \n")
-		screen.Printf("The Integral is: %.15v \n", Integral)
-	}
+	x, y, dy := diferentialEquation.RungeKutta4SecondOrder(
+		x0, x1,
+		y0, dy0,
+		P, Q, R,
+	)
 
+	fmt.Println("Runge-Kutta 4ª ordem (EDO 2ª ordem)")
+	fmt.Printf("x final = %.2f\n", x[len(x)-1])
+	fmt.Printf("y(x)    = %.10f\n", y[len(y)-1])
+	fmt.Printf("y'(x)   = %.10f\n", dy[len(dy)-1])
 }
